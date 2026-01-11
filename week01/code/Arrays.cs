@@ -8,25 +8,18 @@ public static class Arrays
     /// <returns>array of doubles that are the multiples of the supplied number</returns>
     public static double[] MultiplesOf(double number, int length)
     {
-        // TODO Problem 1 Start
-        // Remember: Using comments in your program, write down your process for solving this problem
-        // step by step before you write the code. The plan should be clear enough that it could
-        // be implemented by another person.
 
         // Step 1: Create an array of doubles with the specified length.
         double[] multiples = new double[length];
-        // Step 2: Use a loop to iterate from 0 to length - 1.
+        // Step 2: Use a loop to iterate from 0 to length .
         for (int i = 0; i < length; i++)
         {
             multiples[i] = number * (i + 1);
 
             // Step 3: In each iteration, calculate the multiple by multiplying the current index + 1 with the number.
         }
-
         // Step 4: Assign the calculated multiple to the corresponding index in the array.
-
         // Step 5: After the loop, return the populated array.
-
 
         return multiples;
     }
@@ -44,5 +37,25 @@ public static class Arrays
         // Remember: Using comments in your program, write down your process for solving this problem
         // step by step before you write the code. The plan should be clear enough that it could
         // be implemented by another person.
+
+        // Plan 
+        // 1.Determine the split index where the right-rotation will break the list two parts.
+        //    For a rotation `amount` =  `data.Count-amount`.
+        // 2 use GetRange to copy the tail (the elements that will move to front).
+        // 3 use GetRange to copy the head (the remaining elements).
+        // 4.Clear the original list and `AddRange` the tail followed by the head so the 
+        // list is rotated in-place.
+
+        int splitIndex = data.Count - amount;
+
+        // Copy the ranges 
+        List<int> tail = data.GetRange(splitIndex, amount);
+        List<int> head = data.GetRange(0, splitIndex);
+
+        // Remake the original list switch one another.
+        data.Clear();
+        data.AddRange(tail);
+        data.AddRange(head);
+
     }
 }
